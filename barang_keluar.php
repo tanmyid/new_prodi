@@ -20,6 +20,7 @@ include 'layouts/sidebar.php';
             </div>
             <div class="box-body">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahBarangOut"><i class="fa fa-plus"></i> Tambah</button>
+                <a href="<?= $baseurl; ?>/laporan/cetak_barang_out.php" class="btn btn-primary" target="_blank"><i class="fa fa-print"></i> Print</a>
                 <!-- Modal Add Barang Keluar -->
                 <div class="modal fade" id="tambahBarangOut">
                     <div class="modal-dialog">

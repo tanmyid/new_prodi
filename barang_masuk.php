@@ -26,6 +26,7 @@ include 'layouts/sidebar.php';
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahBarangIn"><i class="fa fa-plus"></i> Tambah Barang</button>
                     <a href="' . $baseurl . '/laporan/cetak_barang_in.php" class="btn btn-primary" target="_blank"><i class="fa fa-print"></i> Print</a>
                     <div class="box-tools pull-right">
+                    <span class="btn btn-success">Total Stok : ' . $total_barang_in . ' </span>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#tambahStok"><i class="fa fa-plus"></i> Tambah Stok</button>
                     </div>
                 </div>

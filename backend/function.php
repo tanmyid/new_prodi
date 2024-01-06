@@ -220,6 +220,7 @@ if (isset($_POST['hapusNamaBarang'])) {
 
 // barang masuk function
 /// get data barang masuk
+$total_barang_in = mysqli_fetch_array(mysqli_query($koneksi, "SELECT SUM(qty) as total_barang_in FROM barang_in"))['total_barang_in'];
 $get_barang_in = mysqli_query($koneksi, "SELECT barang_in.id_barang_in, barang_in.nama_suplier, kategori.id_kategori, kategori.kategori, nama_barang.id_nama_barang, nama_barang.nama_barang, barang_in.tgl_masuk, barang_in.qty FROM barang_in 
                                         INNER JOIN kategori ON barang_in.kategori = kategori.id_kategori
                                         INNER JOIN nama_barang ON barang_in.nama_barang = nama_barang.id_nama_barang");

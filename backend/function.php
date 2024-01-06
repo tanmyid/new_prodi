@@ -330,9 +330,10 @@ if (isset($_POST['hapusPelanggan'])) {
 
 // barang keluar function
 $get_barang_out = mysqli_query($koneksi,    "SELECT barang_out.id_barang_out, barang_out.nama_barang, barang_out.jumlah, barang_out.pelanggan, barang_out.tanggal_out, nama_barang.nama_barang AS nama_barang2, pelanggan.nama_pelanggan 
-                                            FROM barang_out 
+                                            FROM barang_out
                                             INNER JOIN pelanggan ON barang_out.pelanggan = pelanggan.id_pelanggan 
-                                            INNER JOIN nama_barang ON barang_out.nama_barang = nama_barang.id_nama_barang");
+                                            INNER JOIN nama_barang ON barang_out.nama_barang = nama_barang.id_nama_barang
+                                            ");
 /// add barang keluar
 if (isset($_POST['addBarangOut'])) {
     $id_barang_in = $_POST['id_barang_in'];

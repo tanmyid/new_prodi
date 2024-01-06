@@ -48,19 +48,6 @@ include 'layouts/sidebar.php';
                                         <input type="text" class="form-control" placeholder="Masukkan Suplier ..." name="nama_suplier">
                                     </div>
                                     <div class="form-group">
-                                        <label>Kategori</label>
-                                        <select name="kategori" class="form-control">
-                                            <option selected>Pilih...</option>
-                                            <?php
-                                            while ($data = mysqli_fetch_array($get_kategori)) :
-                                                $id_kategori = $data['id_kategori'];
-                                                $kategori = $data['kategori'];
-                                            ?>
-                                                <option value="<?= $id_kategori; ?>"><?= $kategori; ?></option>
-                                            <?php endwhile; ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
                                         <label>Nama Barang</label>
                                         <select name="nama_barang" class="form-control">
                                             <option selected>Pilih...</option>
@@ -74,12 +61,26 @@ include 'layouts/sidebar.php';
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <label>Kategori</label>
+                                        <select name="kategori" class="form-control">
+                                            <option selected>Pilih...</option>
+                                            <?php
+                                            while ($data = mysqli_fetch_array($get_kategori)) :
+                                                $id_kategori = $data['id_kategori'];
+                                                $kategori = $data['kategori'];
+                                            ?>
+                                                <option value="<?= $id_kategori; ?>"><?= $kategori; ?></option>
+                                            <?php endwhile; ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label>Tanggal Masuk</label>
                                         <div class="input-group date">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="datepicker" name="tgl_masuk">
+                                            <input type="text" name="tgl_masuk" class="form-control" readonly value="<?= date('Y-m-d'); ?>">
+                                            <!-- <input type="text" class="form-control pull-right" id="datepicker" name="tgl_masuk"> -->
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -116,9 +117,10 @@ include 'layouts/sidebar.php';
                                             while ($data3 = mysqli_fetch_array($get_barang_in)) :
                                                 $id_barang_in = $data3['id_barang_in'];
                                                 $nama_barang = $data3['nama_barang'];
-                                                $qty_awal = $data3['qty']
+                                                $qty_awal = $data3['qty'];
+                                                $kategori = $data3['kategori'];
                                             ?>
-                                                <option value="<?= $id_barang_in; ?>" data-idnamset="<?= $qty_awal; ?>"><?= $nama_barang; ?></option>
+                                                <option value="<?= $id_barang_in; ?>" data-idnamset="<?= $qty_awal; ?>"><?= $nama_barang . $kategori; ?></option>
                                             <?php endwhile; ?>
                                         </select>
                                     </div>
@@ -136,7 +138,8 @@ include 'layouts/sidebar.php';
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="datepicker_stok" name="tgl_masuk">
+                                            <input type="text" name="tgl_masuk" class="form-control" readonly value="<?= date('Y-m-d'); ?>">
+                                            <!-- <input type="text" class="form-control pull-right" id="datepicker_stok" name="tgl_masuk"> -->
                                         </div>
                                     </div>
                                 </div>
@@ -155,8 +158,8 @@ include 'layouts/sidebar.php';
                             <tr>
                                 <th class="text-center">No</th>
                                 <th class="text-center">Nama Supplier</th>
-                                <th class="text-center">Kategori</th>
                                 <th class="text-center">Nama Barang</th>
+                                <th class="text-center">Kategori</th>
                                 <th class="text-center">Tanggal Masuk</th>
                                 <th class="text-center">Jumlah</th>
                                 <?php
@@ -183,8 +186,8 @@ include 'layouts/sidebar.php';
                                 <tr>
                                     <td class="text-center"><?= $no++; ?></td>
                                     <td class="text-center"><?= $nama_suplier; ?></td>
-                                    <td class="text-center"><?= $kategori; ?></td>
                                     <td class="text-center"><?= $nama_barang; ?></td>
+                                    <td class="text-center"><?= $kategori; ?></td>
                                     <td class="text-center"><?= $tgl_masuk; ?></td>
                                     <td class="text-center"><?= $qty; ?></td>
                                     <?php

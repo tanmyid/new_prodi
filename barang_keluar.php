@@ -42,8 +42,9 @@ include 'layouts/sidebar.php';
                                                 $nama_barang = $data3['nama_barang'];
                                                 $qty_awal = $data3['qty'];
                                                 $id_nama_barang = $data3['id_nama_barang'];
+                                                $kategori = $data3['kategori'];
                                             ?>
-                                                <option value="<?= $id_barang_in; ?>" data-idnamset="<?= $qty_awal; ?>" data-idnamset2="<?= $id_nama_barang; ?>"><?= $nama_barang; ?></option>
+                                                <option value="<?= $id_barang_in; ?>" data-idnamset="<?= $qty_awal; ?>" data-idnamset2="<?= $id_nama_barang; ?>"><?= $nama_barang . $kategori; ?></option>
                                             <?php endwhile; ?>
                                         </select>
                                     </div>

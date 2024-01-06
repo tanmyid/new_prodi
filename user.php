@@ -44,7 +44,7 @@ include 'layouts/sidebar.php';
                                         <input type="text" class="form-control" placeholder="Masukkan Password ..." name="password">
                                     </div>
                                     <div class="form-group">
-                                        <label>Kategori</label>
+                                        <label>Level</label>
                                         <select name="level" class="form-control">
                                             <option selected>Pilih..</option>
                                             <option value="admin">Admin</option>
@@ -119,7 +119,7 @@ include 'layouts/sidebar.php';
                                                         <input type="text" class="form-control" value="<?= $password; ?>" name="password">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Kategori</label>
+                                                        <label>Level</label>
                                                         <select name="level" class="form-control">
                                                             <?php
                                                             if ($level == 'staf') {

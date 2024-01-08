@@ -90,8 +90,13 @@ include 'layouts/sidebar.php';
                                     <td class="text-center"><?= $username; ?></td>
                                     <td class="text-center"><?= $level; ?></td>
                                     <td class="text-center">
-                                        <button class="btn btn-warning" data-toggle="modal" data-target="#editUser<?= $id_user; ?>"> <i class="fa fa-edit"></i>Edit</button>
-                                        <button class="btn btn-danger" data-toggle="modal" data-target="#hapusUser<?= $id_user; ?>"><i class="fa fa-trash"></i> Hapus</button>
+                                        <?php if ($_SESSION['username'] == $username) { ?>
+                                            <button class="btn btn-warning" data-toggle="modal" data-target="#editUser<?= $id_user; ?>"> <i class="fa fa-edit"></i>Edit</button>
+                                        <?php } else { ?>
+                                            <button class="btn btn-warning" data-toggle="modal" data-target="#editUser<?= $id_user; ?>"> <i class="fa fa-edit"></i>Edit</button>
+                                            <button class="btn btn-danger" data-toggle="modal" data-target="#hapusUser<?= $id_user; ?>"><i class="fa fa-trash"></i> Hapus</button>
+                                        <?php } ?>
+
                                     </td>
                                 </tr>
                                 <!-- Modal Edit Kategori -->

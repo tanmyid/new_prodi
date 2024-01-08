@@ -191,15 +191,13 @@ include 'layouts/sidebar.php';
                                     <td class="text-center"><?= $kategori; ?></td>
                                     <td class="text-center"><?= $tgl_masuk; ?></td>
                                     <td class="text-center"><?= $qty; ?></td>
-                                    <?php
-                                    if ($_SESSION['level'] == 'staf') {
-                                        echo '
+                                    <?php if ($_SESSION['level'] == 'staf') { ?>
                                         <td class="text-center">
-                                        <button class="btn btn-danger" data-toggle="modal" data-target="#hapusBarangIn' . $id_barang_in . '"><i class="fa fa-trash"></i> Hapus</button>
+                                            <button class="btn btn-warning" data-toggle="modal" data-target="#hapusBarangIn<?= $id_barang_in; ?>"><i class="fa fa-info"></i> Detail</button>
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#hapusBarangIn<?= $id_barang_in; ?>"><i class="fa fa-plus"></i> Stok</button>
+                                            <button class="btn btn-danger" data-toggle="modal" data-target="#hapusBarangIn<?= $id_barang_in; ?>"><i class="fa fa-trash"></i> Hapus</button>
                                         </td>
-                                        ';
-                                    }
-                                    ?>
+                                    <?php } ?>
 
                                 </tr>
                                 <!-- Modal Hapus Kategori -->

@@ -6,7 +6,7 @@
             <?php
             if ($_SESSION['level'] == 'staf') {
                 echo '
-                <li><a href="' . $baseurl . '/kategori.php"><i class="fa fa-circle-o"></i> <span>Kategori</span></a></li>
+                <li><a href="' . $baseurl . '/ukuran.php"><i class="fa fa-circle-o"></i> <span>Ukuran</span></a></li>
                 <li><a href="' . $baseurl . '/nama_barang.php"><i class="fa fa-circle-o"></i> <span>Nama Barang</span></a></li>
                 <li><a href="' . $baseurl . '/barang_masuk.php"><i class="fa fa-circle-o"></i> <span>Barang Masuk</span></a></li>
                 <li><a href="' . $baseurl . '/barang_keluar.php"><i class="fa fa-circle-o"></i> <span>Barang Keluar</span></a></li>
@@ -14,7 +14,7 @@
             } elseif ($_SESSION['level'] == 'admin') {
                 echo '
                 <li><a href="' . $baseurl . '/barang_masuk.php"><i class="fa fa-circle-o"></i> <span>Barang Masuk</span></a></li>
-                <li><a href="' . $baseurl . '/pelanggan.php"><i class="fa fa-circle-o"></i> <span>Pelanggan</span></a></li>
+                <li><a href="' . $baseurl . '/mekanik.php"><i class="fa fa-circle-o"></i> <span>Mekanik</span></a></li>
                 ';
             } else {
 

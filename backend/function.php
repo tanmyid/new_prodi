@@ -133,9 +133,9 @@ if (isset($_POST['addKategori'])) {
 
     echo '<script>';
     if ($sql_query == TRUE) {
-        echo ' alert("Kategori berhasil di tambah");window.location = "' . $baseurl . '/kategori.php";';
+        echo ' alert("Kategori berhasil di tambah");window.location = "' . $baseurl . '/ukuran.php";';
     } else {
-        echo 'alert("Kategori gagal di tambah");window.location = "' . $baseurl . '/kategori.php";';
+        echo 'alert("Kategori gagal di tambah");window.location = "' . $baseurl . '/ukuran.php";';
     }
     echo '</script>';
 }
@@ -148,9 +148,9 @@ if (isset($_POST['editKategori'])) {
 
     echo '<script>';
     if ($sql_query == TRUE) {
-        echo ' alert("Edit Data Berhasil");window.location = "' . $baseurl . '/kategori.php";';
+        echo ' alert("Edit Data Berhasil");window.location = "' . $baseurl . '/ukuran.php";';
     } else {
-        echo 'alert("Edit Data Gagal!!!");window.location = "' . $baseurl . '/kategori.php";';
+        echo 'alert("Edit Data Gagal!!!");window.location = "' . $baseurl . '/ukuran.php";';
     }
     echo '</script>';
 }
@@ -162,9 +162,9 @@ if (isset($_POST['hapusKategori'])) {
 
     echo '<script>';
     if ($sql_query == TRUE) {
-        echo ' alert("Hapus Data Berhasil");window.location = "' . $baseurl . '/kategori.php";';
+        echo ' alert("Hapus Data Berhasil");window.location = "' . $baseurl . '/ukuran.php";';
     } else {
-        echo 'alert("Hapus Data Gagal!!!");window.location = "' . $baseurl . '/kategori.php";';
+        echo 'alert("Hapus Data Gagal!!!");window.location = "' . $baseurl . '/ukuran.php";';
     }
     echo '</script>';
 }
@@ -221,7 +221,7 @@ if (isset($_POST['hapusNamaBarang'])) {
 // barang masuk function
 /// get data barang masuk
 $total_barang_in = mysqli_fetch_array(mysqli_query($koneksi, "SELECT SUM(qty) as total_barang_in FROM barang_in"))['total_barang_in'];
-$get_barang_in = mysqli_query($koneksi, "SELECT barang_in.id_barang_in, barang_in.nama_suplier, kategori.id_kategori, kategori.kategori, nama_barang.id_nama_barang, nama_barang.nama_barang, barang_in.tgl_masuk, barang_in.qty FROM barang_in 
+$get_barang_in = mysqli_query($koneksi, "SELECT barang_in.id_barang_in, barang_in.nama_suplier, kategori.id_kategori, kategori.kategori, nama_barang.id_nama_barang, nama_barang.nama_barang, barang_in.tgl_masuk, barang_in.qty, nama_barang.id_nama_barang FROM barang_in 
                                         INNER JOIN kategori ON barang_in.kategori = kategori.id_kategori
                                         INNER JOIN nama_barang ON barang_in.nama_barang = nama_barang.id_nama_barang");
 /// tambah data barang masuk
@@ -243,6 +243,21 @@ if (isset($_POST['addBarangIn'])) {
     echo '</script>';
 }
 
+///update stok new
+if (isset($_POST['updateStok'])) {
+    $id_barang_in = $_POST['id_barang_in'];
+    $update_stok = $_POST['stok_terbaru'];
+
+    $sql_query = mysqli_query($koneksi, "UPDATE barang_in SET qty='$update_stok' WHERE id_barang_in='$id_barang_in'");
+
+    echo '<script>';
+    if ($sql_query == TRUE) {
+        echo ' alert("Stok berhasil di tambah");window.location = "' . $baseurl . '/barang_masuk.php";';
+    } else {
+        echo 'alert("Stok gagal di tambah");window.location = "' . $baseurl . '/barang_masuk.php";';
+    }
+    echo '</script>';
+}
 ///update stok
 if (isset($_POST['addStock'])) {
     $id_barang_in = $_POST['id_barang_in'];
@@ -264,6 +279,23 @@ if (isset($_POST['addStock'])) {
     echo '</script>';
 }
 
+if (isset($_POST['tambahStok'])) {
+    $id_barang_in = $_POST['id_barang_in'];
+    $id_kategori = $_POST['id_kategori'];
+    $id_nama_barang = $_POST['id_nama_barang'];
+    $tgl_masuk = $_POST['tgl_masuk'];
+    $add_qty = $_POST['add_qty'];
+
+    $sql_query = mysqli_query($koneksi, "INSERT INTO stock_barang_in (id_stok_barang_in, id_barang_in, nama_barang, kategori, tgl_masuk, qty) VALUES ('','$id_barang_in','$id_nama_barang','$id_kategori','$tgl_masuk','$add_qty')");
+
+    echo '<script>';
+    if ($sql_query == TRUE) {
+        echo ' alert("Stok berhasil di tambah");window.location = "' . $baseurl . '/barang_masuk.php";';
+    } else {
+        echo 'alert("Stok gagal di tambah");window.location = "' . $baseurl . '/barang_masuk.php";';
+    }
+    echo '</script>';
+}
 /// hapus stok barang
 if (isset($_POST['hapusBarangMasuk'])) {
     $id_barang_in = $_POST['id_barang_in'];
@@ -291,9 +323,9 @@ if (isset($_POST['addPelanggan'])) {
 
     echo '<script>';
     if ($sql_query == TRUE) {
-        echo ' alert("Data berhasil di tambah");window.location = "' . $baseurl . '/pelanggan.php";';
+        echo ' alert("Data berhasil di tambah");window.location = "' . $baseurl . '/mekanik.php";';
     } else {
-        echo 'alert("Data gagal di tambah");window.location = "' . $baseurl . '/pelanggan.php";';
+        echo 'alert("Data gagal di tambah");window.location = "' . $baseurl . '/mekanik.php";';
     }
     echo '</script>';
 }
@@ -308,9 +340,9 @@ if (isset($_POST['editPelanggan'])) {
 
     echo '<script>';
     if ($sql_query == TRUE) {
-        echo ' alert("Edit Data Berhasil");window.location = "' . $baseurl . '/pelanggan.php";';
+        echo ' alert("Edit Data Berhasil");window.location = "' . $baseurl . '/mekanik.php";';
     } else {
-        echo 'alert("Edit Data Gagal!!!");window.location = "' . $baseurl . '/pelanggan.php";';
+        echo 'alert("Edit Data Gagal!!!");window.location = "' . $baseurl . '/mekanik.php";';
     }
     echo '</script>';
 }
@@ -322,9 +354,9 @@ if (isset($_POST['hapusPelanggan'])) {
 
     echo '<script>';
     if ($sql_query == TRUE) {
-        echo ' alert("Hapus Data Berhasil");window.location = "' . $baseurl . '/pelanggan.php";';
+        echo ' alert("Hapus Data Berhasil");window.location = "' . $baseurl . '/mekanik.php";';
     } else {
-        echo 'alert("Hapus Data Gagal!!!");window.location = "' . $baseurl . '/pelanggan.php";';
+        echo 'alert("Hapus Data Gagal!!!");window.location = "' . $baseurl . '/mekanik.php";';
     }
     echo '</script>';
 }

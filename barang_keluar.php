@@ -58,7 +58,7 @@ include 'layouts/sidebar.php';
                                         <input type="number" class="form-control" placeholder="Jumlah Barang" name="jumlah">
                                     </div>
                                     <div class="form-group">
-                                        <label>Pelanggan</label>
+                                        <label>Mekanik</label>
                                         <select name="pelanggan" class="form-control">
                                             <option selected>Pilih...</option>
                                             <?php
@@ -96,7 +96,7 @@ include 'layouts/sidebar.php';
                                 <th class="text-center">No</th>
                                 <th class="text-center">Nama Barang</th>
                                 <th class="text-center">Jumlah</th>
-                                <th class="text-center">Pelanggan</th>
+                                <th class="text-center">Mekanik</th>
                                 <th class="text-center">Tanggal Keluar</th>
                                 <th class="text-center">Opsi</th>
                             </tr>

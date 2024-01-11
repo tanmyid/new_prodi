@@ -20,19 +20,16 @@ include 'layouts/sidebar.php';
             </div>
             <div class="box-body">
                 <?php
-                if ($_SESSION['level'] == 'staf') {
-                    echo '
+                if ($_SESSION['level'] == 'staf') { ?>
                     <div class="box-header with-border">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahBarangIn"><i class="fa fa-plus"></i> Tambah Barang</button>
-                    <a href="' . $baseurl . '/laporan/cetak_barang_in.php" class="btn btn-primary" target="_blank"><i class="fa fa-print"></i> Print</a>
-                    <div class="box-tools pull-right">
-                    <span class="btn btn-success">Total Stok : ' . $total_barang_in . ' </span>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#tambahStok"><i class="fa fa-plus"></i> Tambah Stok</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahBarangIn"><i class="fa fa-plus"></i> Tambah Barang</button>
+                        <a href="<?= $baseurl; ?>/laporan/cetak_barang_in.php" class="btn btn-primary" target="_blank"><i class="fa fa-print"></i> Print</a>
+                        <div class="box-tools pull-right">
+                            <span class="btn btn-success">Total Stok : <?= $total_barang_in; ?> </span>
+                        </div>
                     </div>
-                </div>
-                    ';
-                }
-                ?>
+                <?php }  ?>
+
                 <!-- Modal Add Barang Masuk -->
                 <div class="modal fade" id="tambahBarangIn">
                     <div class="modal-dialog">
@@ -62,7 +59,7 @@ include 'layouts/sidebar.php';
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Kategori</label>
+                                        <label>Ukuran</label>
                                         <select name="kategori" class="form-control">
                                             <option selected>Pilih...</option>
                                             <?php
@@ -99,59 +96,7 @@ include 'layouts/sidebar.php';
                     </div>
                 </div>
                 <!-- ./Modal Add Barang Masuk -->
-                <!-- Modal Tambah Stok -->
-                <div class="modal fade" id="tambahStok">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">Tambah Stok</h4>
-                            </div>
-                            <form action="" method="post">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label>Nama Barang</label>
-                                        <select class="form-control" name="id_barang_in" id="mySelect" onchange="getSelectedOption()">
-                                            <option selected>Pilih...</option>
-                                            <?php
-                                            while ($data3 = mysqli_fetch_array($get_barang_in)) :
-                                                $id_barang_in = $data3['id_barang_in'];
-                                                $nama_barang = $data3['nama_barang'];
-                                                $qty_awal = $data3['qty'];
-                                                $kategori = $data3['kategori'];
-                                            ?>
-                                                <option value="<?= $id_barang_in; ?>" data-idnamset="<?= $qty_awal; ?>"><?= $nama_barang . $kategori; ?></option>
-                                            <?php endwhile; ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Stok Awal</label>
-                                        <input type="number" class="form-control" placeholder="Stock Awal" id="selected_stok_awal" name="selected_stok_awal" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tambah Stok</label>
-                                        <input type="number" class="form-control" placeholder="Jumlah" name="add_qty">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tanggal Masuk</label>
-                                        <div class="input-group date">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                            <input type="text" name="tgl_masuk" class="form-control" readonly value="<?= date('Y-m-d'); ?>">
-                                            <!-- <input type="text" class="form-control pull-right" id="datepicker_stok" name="tgl_masuk"> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" name="addStock"><i class="fa fa-save"></i> Simpan</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+
                 <!-- ./Modal Add Barang Masuk -->
                 <div class="box-body">
                     <table id="tabel" class="table table-bordered table-hover">
@@ -160,8 +105,8 @@ include 'layouts/sidebar.php';
                                 <th class="text-center">No</th>
                                 <th class="text-center">Nama Supplier</th>
                                 <th class="text-center">Nama Barang</th>
-                                <th class="text-center">Kategori</th>
-                                <th class="text-center">Tanggal Masuk</th>
+                                <th class="text-center">Ukuran</th>
+                                <!-- <th class="text-center">Tanggal Masuk</th> -->
                                 <th class="text-center">Jumlah</th>
                                 <?php
                                 if ($_SESSION['level'] == 'staf') {
@@ -178,6 +123,7 @@ include 'layouts/sidebar.php';
                             while ($data = mysqli_fetch_array($get_barang_in)) :
                                 $id_barang_in = $data['id_barang_in'];
                                 $id_kategori0 = $data['id_kategori'];
+                                $id_nama_barang0 = $data['id_nama_barang'];
                                 $nama_suplier = $data['nama_suplier'];
                                 $kategori = $data['kategori'];
                                 $nama_barang = $data['nama_barang'];
@@ -189,17 +135,107 @@ include 'layouts/sidebar.php';
                                     <td class="text-center"><?= $nama_suplier; ?></td>
                                     <td class="text-center"><?= $nama_barang; ?></td>
                                     <td class="text-center"><?= $kategori; ?></td>
-                                    <td class="text-center"><?= $tgl_masuk; ?></td>
+                                    <!-- <td class="text-center"><?= $tgl_masuk; ?></td> -->
                                     <td class="text-center"><?= $qty; ?></td>
                                     <?php if ($_SESSION['level'] == 'staf') { ?>
                                         <td class="text-center">
-                                            <button class="btn btn-warning" data-toggle="modal" data-target="#hapusBarangIn<?= $id_barang_in; ?>"><i class="fa fa-info"></i> Detail</button>
-                                            <button class="btn btn-primary" data-toggle="modal" data-target="#hapusBarangIn<?= $id_barang_in; ?>"><i class="fa fa-plus"></i> Stok</button>
+                                            <button class="btn btn-warning" data-toggle="modal" data-target="#detailStok<?= $id_barang_in; ?>"><i class="fa fa-info"></i> Detail</button>
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#tambahStok<?= $id_barang_in; ?>"><i class="fa fa-plus"></i> Stok</button>
                                             <button class="btn btn-danger" data-toggle="modal" data-target="#hapusBarangIn<?= $id_barang_in; ?>"><i class="fa fa-trash"></i> Hapus</button>
                                         </td>
                                     <?php } ?>
-
                                 </tr>
+                                <!-- Modal Tambah Stok -->
+                                <div class="modal fade" id="tambahStok<?= $id_barang_in; ?>">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Tambah Stok</h4>
+                                            </div>
+                                            <form action="" method="post">
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="id_barang_in" value="<?= $id_barang_in; ?>">
+                                                        <input type="hidden" class="form-control" name="id_kategori" value="<?= $id_kategori0; ?>">
+                                                        <input type="hidden" class="form-control" name="id_nama_barang" value="<?= $id_nama_barang0; ?>">
+                                                        <label>Nama Barang</label>
+                                                        <input type="text" class="form-control" name="nama_barang" value="<?= $nama_barang; ?>" readonly>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Ukuran</label>
+                                                        <input type="text" class="form-control" name="kategori" value="<?= $kategori; ?>" readonly>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Tanggal Masuk</label>
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" name="tgl_masuk" class="form-control" readonly value="<?= date('Y-m-d'); ?>">
+                                                            <!-- <input type="text" class="form-control pull-right" id="datepicker_stok" name="tgl_masuk"> -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Tambah Stok</label>
+                                                        <input type="number" class="form-control" placeholder="Jumlah" name="add_qty">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary" name="tambahStok"><i class="fa fa-save"></i> Simpan</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Detail Stock -->
+                                <div class="modal fade" id="detailStok<?= $id_barang_in; ?>">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Detail Stok</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <?php
+                                                $no = 1;
+                                                $get_stok_brang_in = mysqli_query($koneksi, "SELECT stock_barang_in.id_stok_barang_in, stock_barang_in.id_barang_in, nama_barang.nama_barang, kategori.kategori, stock_barang_in.tgl_masuk, stock_barang_in.qty FROM stock_barang_in
+                                                JOIN nama_barang ON nama_barang.id_nama_barang = stock_barang_in.nama_barang
+                                                JOIN kategori ON kategori.id_kategori = stock_barang_in.kategori
+                                                WHERE id_barang_in = '$id_barang_in'");
+                                                while ($data4 = mysqli_fetch_array($get_stok_brang_in)) {
+                                                    $nama_barang = $data4['nama_barang'];
+                                                    $kategori = $data4['kategori'];
+                                                    $tgl_masuk = $data4['tgl_masuk'];
+                                                    $qty = $data4['qty'];
+                                                ?>
+                                                    <ul class="">
+                                                        <li>Nama Barang : <?= $nama_barang; ?></li>
+                                                        <li>Ukuran : <?= $kategori; ?></li>
+                                                        <li>Tgl Masuk : <?= $tgl_masuk; ?></li>
+                                                        <li>Qty : <?= $qty; ?></li>
+                                                    </ul>
+                                                <?php } ?>
+                                                <form action="" method="post">
+                                                    <?php
+                                                    $total_stok = mysqli_fetch_array(mysqli_query($koneksi, "SELECT SUM(qty) AS total_stock FROM stock_barang_in WHERE id_barang_in='$id_barang_in'"))['total_stock']; ?>
+                                                    <ul>
+                                                        <li>Total : <?= $total_stok; ?></li>
+                                                        <input type="hidden" class="form-control" name="stok_terbaru" value="<?= $total_stok; ?>">
+                                                        <input type="hidden" class="form-control" name="id_barang_in" value="<?= $id_barang_in; ?>">
+                                                    </ul>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-success" name="updateStok"><i class="fa fa-plus"></i> Update Stock</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- Modal Hapus Kategori -->
                                 <div class="modal fade" id="hapusBarangIn<?= $id_barang_in; ?>">
                                     <div class="modal-dialog modal-danger">

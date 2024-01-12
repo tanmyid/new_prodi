@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 12, 2024 at 03:48 PM
+-- Generation Time: Jan 11, 2024 at 01:24 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -41,19 +41,19 @@ CREATE TABLE `barang_in` (
 --
 
 INSERT INTO `barang_in` (`id_barang_in`, `nama_suplier`, `kategori`, `nama_barang`, `tgl_masuk`, `qty`) VALUES
-(6, 'Bridgestone', 4, 3, '2023-12-15', 0),
-(7, 'bridgestone', 3, 1, '2023-12-19', 0),
-(8, 'bridgestone', 5, 1, '2023-12-19', 0),
-(10, 'dunlop', 3, 11, '2024-01-06', 0),
-(11, 'gajah tunggal', 8, 8, '2024-01-06', 0),
-(12, 'gajah tunggal', 9, 8, '2024-01-06', 0),
-(13, 'gajah tunggal', 10, 8, '2024-01-06', 0),
-(14, 'bridgestone', 10, 10, '2024-01-06', 0),
-(15, 'bridgestone', 9, 10, '2024-01-06', 0),
-(16, 'bridgestone', 8, 9, '2024-01-06', 0),
-(17, 'dunlop', 6, 12, '2024-01-06', 0),
-(18, 'bridgestone', 11, 7, '2024-01-06', 0),
-(19, 'bridgestone', 7, 6, '2024-01-06', 0);
+(6, 'Bridgestone', 4, 3, '2023-12-15', 169),
+(7, 'bridgestone', 3, 1, '2023-12-19', 175),
+(8, 'bridgestone', 5, 1, '2023-12-19', 615),
+(10, 'dunlop', 3, 11, '2024-01-06', 114),
+(11, 'gajah tunggal', 8, 8, '2024-01-06', 185),
+(12, 'gajah tunggal', 9, 8, '2024-01-06', 134),
+(13, 'gajah tunggal', 10, 8, '2024-01-06', 58),
+(14, 'bridgestone', 10, 10, '2024-01-06', 148),
+(15, 'bridgestone', 9, 10, '2024-01-06', 120),
+(16, 'bridgestone', 8, 9, '2024-01-06', 120),
+(17, 'dunlop', 6, 12, '2024-01-06', 55),
+(18, 'bridgestone', 11, 7, '2024-01-06', 70),
+(19, 'bridgestone', 7, 6, '2024-01-06', 90);
 
 -- --------------------------------------------------------
 
@@ -68,6 +68,16 @@ CREATE TABLE `barang_out` (
   `pelanggan` int NOT NULL,
   `tanggal_out` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `barang_out`
+--
+
+INSERT INTO `barang_out` (`id_barang_out`, `nama_barang`, `jumlah`, `pelanggan`, `tanggal_out`) VALUES
+(1, 1, 20, 1, '2023-12-14'),
+(3, 3, 12, 4, '2023-12-18'),
+(4, 10, 30, 5, '2024-01-06'),
+(5, 9, 20, 2, '2024-01-06');
 
 -- --------------------------------------------------------
 
@@ -166,36 +176,35 @@ CREATE TABLE `stock_barang_in` (
   `nama_barang` int NOT NULL,
   `kategori` int NOT NULL,
   `tgl_masuk` date NOT NULL,
-  `qty` int NOT NULL,
-  `status` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `qty` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `stock_barang_in`
 --
 
-INSERT INTO `stock_barang_in` (`id_stok_barang_in`, `id_barang_in`, `nama_barang`, `kategori`, `tgl_masuk`, `qty`, `status`) VALUES
-(1, 6, 3, 4, '2024-01-11', 75, 0),
-(2, 6, 3, 4, '2024-01-11', 75, 0),
-(3, 7, 1, 3, '2024-01-11', 75, 0),
-(4, 7, 1, 3, '2024-01-11', 75, 0),
-(5, 8, 1, 5, '2024-01-11', 75, 0),
-(6, 8, 1, 5, '2024-01-11', 75, 0),
-(7, 10, 11, 3, '2024-01-11', 75, 0),
-(8, 10, 11, 3, '2024-01-11', 75, 0),
-(9, 11, 8, 8, '2024-01-11', 75, 0),
-(10, 11, 8, 8, '2024-01-11', 75, 0),
-(11, 12, 8, 9, '2024-01-11', 75, 0),
-(12, 12, 8, 9, '2024-01-11', 75, 0),
-(13, 13, 8, 10, '2024-01-11', 75, 0),
-(14, 13, 8, 10, '2024-01-11', 75, 0),
-(15, 14, 10, 10, '2024-01-11', 75, 0),
-(16, 14, 10, 10, '2024-01-11', 75, 0),
-(17, 15, 10, 9, '2024-01-11', 75, 0),
-(18, 15, 10, 9, '2024-01-11', 75, 0),
-(19, 16, 9, 8, '2024-01-11', 75, 0),
-(20, 16, 9, 8, '2024-01-11', 75, 0),
-(21, 6, 3, 4, '2024-01-11', 75, 0);
+INSERT INTO `stock_barang_in` (`id_stok_barang_in`, `id_barang_in`, `nama_barang`, `kategori`, `tgl_masuk`, `qty`) VALUES
+(1, 6, 3, 4, '2024-01-11', 50),
+(2, 6, 3, 4, '2024-01-11', 30),
+(3, 7, 1, 3, '2024-01-11', 100),
+(4, 7, 1, 3, '2024-01-11', 75),
+(5, 8, 1, 5, '2024-01-11', 89),
+(6, 8, 1, 5, '2024-01-11', 526),
+(7, 10, 11, 3, '2024-01-11', 56),
+(8, 10, 11, 3, '2024-01-11', 58),
+(9, 11, 8, 8, '2024-01-11', 98),
+(10, 11, 8, 8, '2024-01-11', 87),
+(11, 12, 8, 9, '2024-01-11', 78),
+(12, 12, 8, 9, '2024-01-11', 56),
+(13, 13, 8, 10, '2024-01-11', 12),
+(14, 13, 8, 10, '2024-01-11', 46),
+(15, 14, 10, 10, '2024-01-11', 85),
+(16, 14, 10, 10, '2024-01-11', 63),
+(17, 15, 10, 9, '2024-01-11', 75),
+(18, 15, 10, 9, '2024-01-11', 45),
+(19, 16, 9, 8, '2024-01-11', 57),
+(20, 16, 9, 8, '2024-01-11', 63),
+(21, 6, 3, 4, '2024-01-11', 89);
 
 -- --------------------------------------------------------
 
@@ -287,7 +296,7 @@ ALTER TABLE `barang_in`
 -- AUTO_INCREMENT for table `barang_out`
 --
 ALTER TABLE `barang_out`
-  MODIFY `id_barang_out` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_barang_out` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -311,7 +320,7 @@ ALTER TABLE `pelanggan`
 -- AUTO_INCREMENT for table `stock_barang_in`
 --
 ALTER TABLE `stock_barang_in`
-  MODIFY `id_stok_barang_in` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_stok_barang_in` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `user`

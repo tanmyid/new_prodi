@@ -96,7 +96,6 @@ include 'layouts/sidebar.php';
                     </div>
                 </div>
                 <!-- ./Modal Add Barang Masuk -->
-
                 <!-- ./Modal Add Barang Masuk -->
                 <div class="box-body">
                     <table id="tabel" class="table table-bordered table-hover">
@@ -139,7 +138,7 @@ include 'layouts/sidebar.php';
                                     <td class="text-center"><?= $qty; ?></td>
                                     <?php if ($_SESSION['level'] == 'staf') { ?>
                                         <td class="text-center">
-                                            <button class="btn btn-warning" data-toggle="modal" data-target="#detailStok<?= $id_barang_in; ?>"><i class="fa fa-info"></i> Detail</button>
+                                            <a href="detail_stok.php?id=<?= $id_barang_in; ?>" class="btn btn-info"><i class="fa fa-info"></i> Detail</a>
                                             <button class="btn btn-primary" data-toggle="modal" data-target="#tambahStok<?= $id_barang_in; ?>"><i class="fa fa-plus"></i> Stok</button>
                                             <button class="btn btn-danger" data-toggle="modal" data-target="#hapusBarangIn<?= $id_barang_in; ?>"><i class="fa fa-trash"></i> Hapus</button>
                                         </td>
@@ -191,52 +190,7 @@ include 'layouts/sidebar.php';
                                     </div>
                                 </div>
                                 <!-- Detail Stock -->
-                                <div class="modal fade" id="detailStok<?= $id_barang_in; ?>">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title">Detail Stok</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <?php
-                                                $no = 1;
-                                                $get_stok_brang_in = mysqli_query($koneksi, "SELECT stock_barang_in.id_stok_barang_in, stock_barang_in.id_barang_in, nama_barang.nama_barang, kategori.kategori, stock_barang_in.tgl_masuk, stock_barang_in.qty FROM stock_barang_in
-                                                JOIN nama_barang ON nama_barang.id_nama_barang = stock_barang_in.nama_barang
-                                                JOIN kategori ON kategori.id_kategori = stock_barang_in.kategori
-                                                WHERE id_barang_in = '$id_barang_in'");
-                                                while ($data4 = mysqli_fetch_array($get_stok_brang_in)) {
-                                                    $nama_barang = $data4['nama_barang'];
-                                                    $kategori = $data4['kategori'];
-                                                    $tgl_masuk = $data4['tgl_masuk'];
-                                                    $qty = $data4['qty'];
-                                                ?>
-                                                    <ul class="">
-                                                        <li>Nama Barang : <?= $nama_barang; ?></li>
-                                                        <li>Ukuran : <?= $kategori; ?></li>
-                                                        <li>Tgl Masuk : <?= $tgl_masuk; ?></li>
-                                                        <li>Qty : <?= $qty; ?></li>
-                                                    </ul>
-                                                <?php } ?>
-                                                <form action="" method="post">
-                                                    <?php
-                                                    $total_stok = mysqli_fetch_array(mysqli_query($koneksi, "SELECT SUM(qty) AS total_stock FROM stock_barang_in WHERE id_barang_in='$id_barang_in'"))['total_stock']; ?>
-                                                    <ul>
-                                                        <li>Total : <?= $total_stok; ?></li>
-                                                        <input type="hidden" class="form-control" name="stok_terbaru" value="<?= $total_stok; ?>">
-                                                        <input type="hidden" class="form-control" name="id_barang_in" value="<?= $id_barang_in; ?>">
-                                                    </ul>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-success" name="updateStok"><i class="fa fa-plus"></i> Update Stock</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Modal Hapus Kategori -->
+                                <!-- Modal Hapus Barang Masuk -->
                                 <div class="modal fade" id="hapusBarangIn<?= $id_barang_in; ?>">
                                     <div class="modal-dialog modal-danger">
                                         <div class="modal-content">
@@ -262,10 +216,8 @@ include 'layouts/sidebar.php';
                                     </div>
                                 </div>
                                 <!-- ./Modal Hapus Kategori -->
-                            <?php
-                            endwhile;
-                            ?>
                         </tbody>
+                    <?php endwhile; ?>
                     </table>
                 </div>
             </div>

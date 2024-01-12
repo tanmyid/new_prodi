@@ -245,19 +245,36 @@ if (isset($_POST['addBarangIn'])) {
 
 ///update stok new
 if (isset($_POST['updateStok'])) {
-    $id_barang_in = $_POST['id_barang_in'];
-    $update_stok = $_POST['stok_terbaru'];
+    $id_barang = $_POST['id_barang'];
+    $total = $_POST['qty_awal'] + $_POST['qty_add'];
+    $id_per_stok = $_POST['id_per_stok'];
 
-    $sql_query = mysqli_query($koneksi, "UPDATE barang_in SET qty='$update_stok' WHERE id_barang_in='$id_barang_in'");
+    $sql_query = mysqli_query($koneksi, "UPDATE barang_in SET qty='$total' WHERE id_barang_in='$id_barang'");
 
-    echo '<script>';
     if ($sql_query == TRUE) {
-        echo ' alert("Stok berhasil di tambah");window.location = "' . $baseurl . '/barang_masuk.php";';
+        mysqli_query($koneksi, "UPDATE stock_barang_in SET status=1 WHERE id_stok_barang_in='$id_per_stok'");
+        echo '<script> alert("Stock berhasil di tambah");window.location = "' . $baseurl . '/detail_stok.php?id=' . $id_barang . '";</script>';
     } else {
         echo 'alert("Stok gagal di tambah");window.location = "' . $baseurl . '/barang_masuk.php";';
     }
     echo '</script>';
 }
+/// delete update stok ()
+if (isset($_POST['delupdateStok'])) {
+    $id_per_stok = $_POST['id_per_stok'];
+    $id_barang = $_POST['id_barang'];
+
+    $sql_query = mysqli_query($koneksi, "DELETE FROM stock_barang_in WHERE id_stok_barang_in='$id_per_stok'");
+
+    echo '<script>';
+    if ($sql_query == TRUE) {
+        echo ' alert("Hapus Data Berhasil");window.location = "' . $baseurl . '/detail_stok.php?id=' . $id_barang . '";';
+    } else {
+        echo 'alert("Hapus Data Gagal!!!");window.location = "' . $baseurl . '/detail_stok.php?id=' . $id_barang . '";';
+    }
+    echo '</script>';
+}
+
 ///update stok
 if (isset($_POST['addStock'])) {
     $id_barang_in = $_POST['id_barang_in'];
